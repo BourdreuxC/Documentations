@@ -24,7 +24,7 @@
             "value": "Default"
         },
         "databaseAccounts_dibotaccount_name": {
-            "value": "dibotaccount"
+            "value": "dibotaccountstaging"
         },
         "apiVersion": {
             "value": "NODE|16-lts"

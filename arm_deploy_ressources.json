@@ -78,7 +78,7 @@
         "frontName":"[concat(parameters('ressources_base_name'), '-front-',parameters('env'))]",
         "apiName": "[concat(parameters('ressources_base_name'), '-api-',parameters('env'))]",
         
-        "database_account_name": "[concat(parameters('databaseAccounts_dibotaccount_name'),parameters('env'))]",
+        // "database_account_name": "[concat(parameters('databaseAccounts_dibotaccount_name'),parameters('env'))]",
         
         "tagRessource":"[concat('hidden-related:','/providers/Microsoft.Web/serverfarms/', variables('serverfarmName'))]",
         
@@ -167,7 +167,7 @@
          {
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "apiVersion": "2022-02-15-preview",
-            "name": "[variables('database_account_name')]",
+            "name": "[parameters('databaseAccounts_dibotaccount_name')]",
             "location": "[parameters('rg_location')]",
             "tags": {
                 "defaultExperience": "Core (SQL)",
@@ -226,9 +226,9 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts',parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
@@ -241,7 +241,7 @@
             "apiVersion": "2022-02-15-preview",
             "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/00000000-0000-0000-0000-000000000001')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Built-in Data Reader",
@@ -267,13 +267,13 @@
             "apiVersion": "2022-02-15-preview",
             "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/00000000-0000-0000-0000-000000000002')]",
             "dependsOn": [
-                 "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                 "[resourceId('Microsoft.DocumentDB/databaseAccounts',parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Built-in Data Contributor",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
                 ],
                 "permissions": [
                     {
@@ -290,10 +290,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase/Questions')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase/Questions')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('database_account_name'), 'DiiageBotDatabase')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_dibotaccount_name'), 'DiiageBotDatabase')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
@@ -331,10 +331,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase/Reactions')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase/Reactions')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('database_account_name'), 'DiiageBotDatabase')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_dibotaccount_name'), 'DiiageBotDatabase')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
@@ -372,10 +372,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase/Speakers')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase/Speakers')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('database_account_name'), 'DiiageBotDatabase')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_dibotaccount_name'), 'DiiageBotDatabase')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
@@ -413,10 +413,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase/Tags')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase/Tags')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('database_account_name'), 'DiiageBotDatabase')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_dibotaccount_name'), 'DiiageBotDatabase')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
@@ -454,10 +454,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase/Users')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase/Users')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases',variables('database_account_name'),'DiiageBotDatabase')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases',parameters('databaseAccounts_dibotaccount_name'),'DiiageBotDatabase')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
@@ -495,10 +495,10 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/throughputSettings",
             "apiVersion": "2022-02-15-preview",
-            "name": "[concat(variables('database_account_name'), '/DiiageBotDatabase/default')]",
+            "name": "[concat(parameters('databaseAccounts_dibotaccount_name'), '/DiiageBotDatabase/default')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', variables('database_account_name'), 'DiiageBotDatabase')]",
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', variables('database_account_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts/sqlDatabases', parameters('databaseAccounts_dibotaccount_name'), 'DiiageBotDatabase')]",
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_dibotaccount_name'))]"
             ],
             "properties": {
                 "resource": {
