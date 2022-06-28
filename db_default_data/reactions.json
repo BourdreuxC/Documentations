@@ -1,0 +1,32 @@
+[
+    {
+        "id": "",
+        "reaction": "Heart",
+        "value": 20
+    },
+    {
+        "id": "",
+        "reaction": "Like",
+        "value": 10
+    },
+    {
+        "id": "",
+        "reaction": "Laught",
+        "value": 5
+    },
+    {
+        "id": "",
+        "reaction": "Surprised",
+        "value": -5
+    },
+    {
+        "id": "",
+        "reaction": "Sad",
+        "value": -10
+    },
+    {
+        "id": "",
+        "reaction": "Angry",
+        "value": -20
+    }
+]
